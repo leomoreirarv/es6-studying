@@ -1,9 +1,10 @@
-import {Person} from '../Person/Person.js';
+import { Person } from '../Person/Person.js';
+import { StudentDataService } from './student-data-service.js';
 
 export class Student extends Person{
    constructor(name, gender, birthdate, reg){
        super(name, gender, birthdate);
-        this._reg = reg;
+       this._reg = reg;
    }
 
    get reg(){
@@ -11,6 +12,7 @@ export class Student extends Person{
    }
 
    set reg(value){
-       this._reg = reg;
+       this._reg = value;
    }
+   
 }

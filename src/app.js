@@ -1,8 +1,14 @@
-import {Student} from './Student/Student.js';
-import {Staff} from './Staff/Staff.js';
+import { StudentDataServiceLocalStorage } from './Student/student-data-service-localstorage.js';
+import { StudentRepository } from './Student/student-repository.js';
+import { Student } from './Student/Student.js';
+import { StudentData } from './Student/students-data.js';
 
-let student = new Student("Joaquim da Silva", "male", new Date("1975-10-05"), "A1234");
-let staff = new Staff("Maria Antonieta", "female", new Date("1969-02-10"), "maintenance");
+let sd = new StudentData();
 
-console.log("student", student);
-console.log("staff", staff);
+let ds = new StudentDataServiceLocalStorage(sd);
+let student1 = new Student("Leonardo Moreira", "Male", new Date("1982-08-02"), "123456789");
+ds.loadStudents();
+ds.saveStudent(student1);
+let repo = new StudentRepository(ds);
+
+console.log("students", repo.list());
