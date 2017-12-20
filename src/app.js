@@ -18,16 +18,19 @@ export class App{
 
     addRoute(name, title, obj){
         let me = this;
-        let itemMenu = document.createElement("li");
-        itemMenu.setAttribute("class", "nav-item");
-        let linkMenu = document.createElement("a");
-        linkMenu.setAttribute("class", "nav-link");
-
         me._routes[name] = {
             name: name, 
             obj: obj
         }
+        me.createMenuItem(name, title);
+    }
 
+    createMenuItem(name, title){
+        let me = this;
+        let itemMenu = document.createElement("li");
+        itemMenu.setAttribute("class", "nav-item");
+        let linkMenu = document.createElement("a");
+        linkMenu.setAttribute("class", "nav-link");
         linkMenu.setAttribute("href", "#");
         linkMenu.innerText = title;
         linkMenu.onclick = function(){
@@ -38,9 +41,10 @@ export class App{
     }
 
     addRoutes(){
-        this.addRoute("home", "Home", new HomePage());
-        this.addRoute("student", "Student", new StudentPage());
-        this.addRoute("staff", "Staff", new StaffPage());
+        let me = this;
+        me.addRoute("home", "Home", new HomePage());
+        me.addRoute("student", "Student", new StudentPage());
+        me.addRoute("staff", "Staff", new StaffPage());
     }
 
     changeRoute(route){
