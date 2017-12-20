@@ -1,11 +1,13 @@
 export class Page{
-    constructor(){
-        this.createMainElement();
+    constructor(id, title){
+        this._id = id;
+        this._title = title;
     }
 
-    init(id, title){
-        let mainElement = this.createMainElement(id);
-        let titleElement = this.createTitleElement(title);
+    init(){
+        document.getElementById("main").innerHTML = "";
+        let mainElement = this.createMainElement(this._id);
+        let titleElement = this.createTitleElement(this._title);
         document.getElementById("main").appendChild(mainElement);
         mainElement.appendChild(titleElement);
     }
@@ -18,8 +20,11 @@ export class Page{
     }
 
     createTitleElement(text){
-        let element = document.createElement("h4");
+        let box = document.createElement("div");
+        box.setAttribute("class", "page-header");
+        let element = document.createElement("h1");
         element.innerHTML = text;
-        return element;
+        box.appendChild(element);
+        return box;
     }
 }
