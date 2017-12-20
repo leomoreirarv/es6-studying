@@ -1,5 +1,4 @@
 import { Person } from '../Person/Person.js';
-import { StudentDataService } from './student-data-service.js';
 
 export class Student extends Person{
    constructor(name, gender, birthdate, reg){
@@ -14,5 +13,4 @@ export class Student extends Person{
    set reg(value){
        this._reg = value;
    }
-   
 }
