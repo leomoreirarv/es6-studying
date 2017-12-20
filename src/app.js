@@ -5,32 +5,42 @@ import { StaffPage } from './Interface/Staff/Staff.js';
 export class App{
     constructor(){
         this.createRoutes();
-        this.addRoute("home", "Home", new HomePage());
-        this.addRoute("student", "Student", new StudentPage());
-        this.addRoute("staff", "Staff", new StaffPage());
+        this.addRoutes();
         this.listenerRoute();
         this.changeRoute("home");
     }
 
     createRoutes(){
-        this._routes = {};
-        this._menuElement = document.getElementById("main-menu");
+        let me = this;
+        me._routes = {};
+        me._menuElement = document.getElementById("main-menu");
     }
 
     addRoute(name, title, obj){
         let me = this;
+        let itemMenu = document.createElement("li");
+        itemMenu.setAttribute("class", "nav-item");
+        let linkMenu = document.createElement("a");
+        linkMenu.setAttribute("class", "nav-link");
+
         me._routes[name] = {
             name: name, 
             obj: obj
         }
-        let itemMenu = document.createElement("li");
-        let linkMenu = document.createElement("a");
+
+        linkMenu.setAttribute("href", "#");
         linkMenu.innerText = title;
         linkMenu.onclick = function(){
             me.changeRoute(name);
         }
         itemMenu.appendChild(linkMenu);
         me._menuElement.appendChild(itemMenu);
+    }
+
+    addRoutes(){
+        this.addRoute("home", "Home", new HomePage());
+        this.addRoute("student", "Student", new StudentPage());
+        this.addRoute("staff", "Staff", new StaffPage());
     }
 
     changeRoute(route){

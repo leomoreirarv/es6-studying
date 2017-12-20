@@ -4,7 +4,7 @@ import { Student } from './Student.js';
 export class StudentDataServiceLocalStorage extends StudentDataService{
     constructor(data){
         super();
-        this._data = data;
+        this._data = data ? data : [];
         this._reg = [];
     }
 
