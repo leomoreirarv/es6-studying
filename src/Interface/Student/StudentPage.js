@@ -11,8 +11,7 @@ export class StudentPage extends Page{
     init(){
         super.init();
         this.createContentElement();
-        let data = this._repository.list();
-        this.createTableElement(data);
+        this.createTableElement(this._repository.list());
     } 
 
     createContentElement(){

@@ -22,7 +22,7 @@ export class Page{
     createTitleElement(text){
         let box = document.createElement("div");
         box.setAttribute("class", "page-header");
-        let element = document.createElement("p");
+        let element = document.createElement("h3");
         element.innerHTML = text;
         box.appendChild(element);
         return box;
