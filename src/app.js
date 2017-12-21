@@ -1,6 +1,9 @@
 import { HomePage } from './Interface/Home/HomePage.js';
 import { StudentPage } from './Interface/Student/StudentPage.js';
 import { StaffPage } from './Interface/Staff/Staff.js';
+import { StudentData } from './Student/students-data.js';
+import { StudentDataServiceLocalStorage } from './Student/student-data-service-localstorage.js';
+import { StudentRepository } from './Student/student-repository.js';
 
 export class App{
     constructor(){
@@ -43,7 +46,7 @@ export class App{
     addRoutes(){
         let me = this;
         me.addRoute("home", "Home", new HomePage());
-        me.addRoute("student", "Student", new StudentPage());
+        me.addRoute("student", "Student", new StudentPage(this.studentRepository()));
         me.addRoute("staff", "Staff", new StaffPage());
     }
 
@@ -58,6 +61,14 @@ export class App{
             obj.init();
         });
     }
+
+    studentRepository(){
+        var studentData = new StudentData();
+        var studentDataService = new StudentDataServiceLocalStorage(studentData);
+        studentDataService.loadStudents();
+        var studentRespository = new StudentRepository(studentDataService);
+        return studentRespository;
+    }
 }
 
-new App();
+var app = new App();

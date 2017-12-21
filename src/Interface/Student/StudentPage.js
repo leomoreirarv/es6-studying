@@ -1,19 +1,18 @@
 import { Page } from "../Page.js";
-import { StudentRepository } from "../../Student/student-repository.js";
-import { StudentDataServiceLocalStorage } from "../../Student/student-data-service-localstorage.js";
-import { StudentData } from "../../Student/students-data.js";
 import { Table } from "../Table.js";
 
 
 export class StudentPage extends Page{
-    constructor(){
+    constructor(repository){
         super("page-student", "Student Page");
+        this._repository = repository;
     }
 
     init(){
         super.init();
         this.createContentElement();
-        this.createTableElement(this.loadData());
+        let data = this._repository.list();
+        this.createTableElement(data);
     } 
 
     createContentElement(){
@@ -30,13 +29,4 @@ export class StudentPage extends Page{
         let contentElement = document.getElementById("student-content");
         contentElement.appendChild(tableElement);
     }
-
-    loadData(){
-        var studentData = new StudentData();
-        var studentDataService = new StudentDataServiceLocalStorage(studentData);
-        studentDataService.loadStudents();
-        var students = new StudentRepository(studentDataService);
-        return students.list();
-    }
-
 }

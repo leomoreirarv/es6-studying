@@ -3,7 +3,6 @@ export class Table{
         this._data = data;
         this._header = header ? header : Object.keys(this._data[0]);
     }
-
     
     buildTable(){
         let tableElement = this.createTableElement();
