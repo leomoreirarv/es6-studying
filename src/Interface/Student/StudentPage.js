@@ -2,6 +2,7 @@ import { Page } from "../Page.js";
 import { StudentRepository } from "../../Student/student-repository.js";
 import { StudentDataServiceLocalStorage } from "../../Student/student-data-service-localstorage.js";
 import { StudentData } from "../../Student/students-data.js";
+import { Table } from "../Table.js";
 
 
 export class StudentPage extends Page{
@@ -13,7 +14,7 @@ export class StudentPage extends Page{
         super.init();
         this.createContentElement();
         this.createTableElement(this.loadData());
-    }
+    } 
 
     createContentElement(){
         let main = document.getElementById("main");
@@ -24,18 +25,9 @@ export class StudentPage extends Page{
     }
 
     createTableElement(data){
-        let tableElement = document.createElement("table");
-        tableElement.setAttribute("class", "table");
+        let table = new Table(data, ["Name", "Gender", "Birthdate", "COD"]);
+        let tableElement = table.buildTable();
         let contentElement = document.getElementById("student-content");
-        for(let d of data){
-            let rowElement = document.createElement("tr");
-            for(let c of Object.keys(d)){
-                let colElement = document.createElement("td");
-                colElement.innerText = d[c];
-                rowElement.appendChild(colElement);
-            }
-            tableElement.appendChild(rowElement);
-        }
         contentElement.appendChild(tableElement);
     }
 
