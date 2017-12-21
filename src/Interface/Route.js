@@ -17,7 +17,6 @@ export class Route extends Menu{
     }
 
     changeRoute(routeName){
-        console.log("route", routeName);
         window.dispatchEvent(new CustomEvent("changeRoute", { detail: { route: routeName }}));
     }
 
