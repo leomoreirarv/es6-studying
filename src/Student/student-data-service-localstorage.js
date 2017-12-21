@@ -23,7 +23,7 @@ export class StudentDataServiceLocalStorage extends StudentDataService{
     readAllStudents(){
         for(let student of this._reg){
             student._birthdate = moment(student._birthdate).format("DD/MM/YY");
-            student._reg = student._reg.substr(0, 6);
+            student._reg = student._reg.substr(0, 10);
         }
         return this._reg;
     }
